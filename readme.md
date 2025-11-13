@@ -1,9 +1,9 @@
-# SpongeMock: mOCkInG tExT for QMK
-SpongeMock is a QMK community mod that RandomlY CapItalIzes leTters to mimic the SpongeBob mocking meme.
+# SpongeMock: auTomaTed MOckinG tExT for QMK
+SpongeMock is a QMK community mod that RandomlY CapItalIzes leTters like in the SpongeBob mocking meme.
 
-It works by intercepting alphanumeric keys and randomly applying left shift.
+It works by intercepting alpha keys and randomly sending a one-shot left shift.
 
-## Adding SpongeMock To Your Keymap
+## Adding and Using SpongeMock
 1.  Add the spongemock module to your QMK directory.
 
     **Option A: Git Submodule (Recommended)**
@@ -32,23 +32,25 @@ It works by intercepting alphanumeric keys and randomly applying left shift.
 
 3. Include a way to activate SpongeMock in your `keymap.c` file.
 
-There are two ways to activate SpongeMock: using the built-in keycodes, or by calling the functions directly. These are discussed below.
+SpongeMock can be activated using built-in keycodes or by calling functions directly (see sections below).
 
-Once active, RandoM letTers will bE CapitalIZEd until the mode is disabled.
+To deactivate, use the deactivation methods below or press space twice in a row.
 
-## Built-In Keycodes (easy)
+Once active, RandoM letTers will bE CapitalIZEd until disabled.
+
+## Built-In Keycodes
 Add the following keycodes to your layout in `keymap.c`:
 - `SPONGEMOCK_TOGGLE` [alias `SM_TOGG`]: Toggles SpongeMock mode.
 - `SPONGEMOCK_ON` [alias `SM_ON`]: Turns SpongeMock mode on.
 - `SPONGEMOCK_OFF` [alias `SM_OFF`]: Turns SpongeMock mode off.
 
-## Use the Functions (advanced)
-Call one of the SpongeMock buttons directly, either through a leader key, macros, or otherwise.
+## Calling Functions
+Call one of the SpongeMock functions directly, either through a leader key, macros, or otherwise.
 
 Leader key example:
 ```c
 void leader_end_user(void) {
-  // Leader + S, M
+  // Leader, S, M
   if (leader_sequence_two_keys(KC_S, KC_M)) {
     toggle_spongemock();
   }
@@ -79,4 +81,4 @@ Toggles SpongeMock mode.
 ```c
 bool is_spongemock_active(void);
 ```
-Returns true if SpongeMock is active.
+Returns true if SpongeMock mode is active.
