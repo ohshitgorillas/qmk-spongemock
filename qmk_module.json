@@ -1,0 +1,22 @@
+{
+    "module_name": "spongemock",
+    "maintainer": "ohshitgorillas",
+    "license": "MIT",
+    "features": {
+        "process_record": true
+    },
+    "keycodes": [
+        {
+            "key": "SPONGEMOCK_TOGGLE",
+            "aliases": ["SM_TOGG"]
+        },
+        {
+            "key": "SPONGEMOCK_ON",
+            "aliases": ["SM_ON"]
+        },
+        {
+            "key": "SPONGEMOCK_OFF",
+            "aliases": ["SM_OFF"]
+        }
+    ]
+}
