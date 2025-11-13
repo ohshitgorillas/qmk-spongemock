@@ -8,6 +8,8 @@ static bool random_bool(void) {
   return rand() & 1;
 }
 
+static uint16_t last_keycode = KC_NO;
+
 
 // --- User-facing functions ---
 void enable_spongemock(void) {
@@ -48,30 +50,26 @@ bool process_record_spongemock(uint16_t keycode, keyrecord_t *record) {
             return false; // Keycode was handled
     }
 
-    // If not active, let all other keys pass through
-    if (!spongemock_active) {
-        return true;
-    } else {  // aPplY left shIfT randOMlY
-        if (keycode >= KC_A && keycode <= KC_Z) {
-            if (record->event.pressed) {
-                if (random_bool()) {
-                    register_code(KC_LSFT);
-                }
+    if (!is_spongemock_active()) {  // spongemock is not active
+        return true;  // pass the key event
+    }
+
+    if (record->event.pressed) {
+        if (keycode == KC_SPC) {
+            if (last_keycode == KC_SPC) {  // double space exits spongemock mode
+                disable_spongemock();
+                last_keycode = KC_NO;  // reset last_keycode
+                return false; // don't send the second space
+            } else {
+                last_keycode = KC_SPC;  // set last_keycode to space
+                return true; // Let the space through
+            }
+        } else if (keycode >= KC_A && keycode <= KC_Z) {
+            if (random_bool()) {
+                add_oneshot_mods(MOD_BIT(KC_LSFT));
             }
         }
-    return true; // Pass the original keycode through
+        last_keycode = keycode;  // set last_keycode to the current keycode
     }
-};
-
-void post_process_record_spongemock(uint16_t keycode, keyrecord_t *record) {
-    if (!spongemock_active) {
-        return;
-    }
-
-    // Clean up the shift key
-    if (keycode >= KC_A && keycode <= KC_Z) {
-        if (record->event.pressed) {
-            unregister_code(KC_LSFT);
-        }
-    }
+    return true;  // pass the key event
 };
