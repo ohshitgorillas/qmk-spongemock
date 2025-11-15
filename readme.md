@@ -9,7 +9,7 @@ It works by intercepting alpha keys and randomly sending a one-shot left shift.
     **Option A: Git Submodule (Recommended)**
     ```bash
     cd <qmk directory>
-    git submodule add <your-repo-url> modules/ohshitgorillas/spongemock
+    git submodule add https://github.com/ohshitgorillas/qmk-spongemock.git modules/ohshitgorillas/spongemock
     ```
 
     **Option B: Manual Download**
@@ -18,7 +18,7 @@ It works by intercepting alpha keys and randomly sending a one-shot left shift.
     ```
     <qmk directory>/modules/ohshitgorillas/spongemock/
     ```
-    Place `spongemock.c`, `spongemock.h`, `qmk_module.json`, and `readme.md` inside this folder.
+    Place `spongemock.c`, `spongemock.h`, `qmk_module.json`, `introspection.h`, and `readme.md` inside this folder.
 
 2.  Add the following to your `keymap.json` file:
 
