@@ -18,10 +18,12 @@ void enable_spongemock(void) {
 
 void disable_spongemock(void) {
     spongemock_active = false;
+    last_keycode = KC_NO;
 }
 
 void toggle_spongemock(void) {
     spongemock_active = !spongemock_active;
+    last_keycode = KC_NO;
 }
 
 bool is_spongemock_active(void) {
