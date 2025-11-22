@@ -12,20 +12,36 @@ static uint16_t last_keycode = KC_NO;
 
 
 // --- User-facing functions ---
+/**
+ * @brief Enable spongemock.
+ * @return void
+ */
 void enable_spongemock(void) {
     spongemock_active = true;
 }
 
+/**
+ * @brief Disable spongemock.
+ * @return void
+ */
 void disable_spongemock(void) {
     spongemock_active = false;
     last_keycode = KC_NO;
 }
 
+/**
+ * @brief Toggle spongemock.
+ * @return void
+ */
 void toggle_spongemock(void) {
     spongemock_active = !spongemock_active;
     last_keycode = KC_NO;
 }
 
+/**
+ * @brief Check if spongemock is active.
+ * @return True if spongemock is active, false otherwise.
+ */
 bool is_spongemock_active(void) {
     return spongemock_active;
 }
